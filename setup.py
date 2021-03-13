@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.webs0093',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='# Jeremy Webster (webs0093) Docassemble Archive\r\n\r\nProgress made in Docassemble for `Option B` in Interactive Computer Systems COMP3751\r\n\r\nLast update date of progress for assessments\r\n- C1: 13/03/2021\r\n- C2: No Progress\r\n- C3: No Progress\r\n\r\n## Author\r\n\r\nJeremy Webster, webs0093@flinders.edu.au\r\n\r\n',
+      long_description='# Jeremy Webster (webs0093) Docassemble Archive\r\n\r\nProgress made in Docassemble for `Option B` in Interactive Computer Systems COMP3751\r\n\r\nLast update date of progress for assessments\r\n- C1: 14/03/2021\r\n- C2: No Progress\r\n- C3: No Progress\r\n\r\n## Author\r\n\r\nJeremy Webster, webs0093@flinders.edu.au\r\n\r\n',
       long_description_content_type='text/markdown',
       author='Jeremy Webster',
       author_email='webs0093@flinders.edu.au',
