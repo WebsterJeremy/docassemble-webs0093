@@ -1,0 +1,31 @@
+---
+# My third docassemble program
+mandatory: True
+question: Welcome to docassemble!
+subquestion: |
+  Welcome,
+  
+  
+  Field  | Result
+  -------|-------
+  Name   | ${ JWsalutation } ${ JWfirstname } ${ JWlastname }
+  Age    | ${ JWage }
+buttons:
+  - Exit: exit
+    url: https://flinders.edu.au
+  - Restart: restart
+---
+question: Your Details
+subquestion: |
+  Please enter all your details.
+fields:
+  - Salutation: JWsalutation
+    choices:
+      - Dr
+      - Mr
+      - Mrs
+      - Ms
+  - First Name: JWfirstname
+  - Last Name: JWlastname
+  - Age: JWage
+---

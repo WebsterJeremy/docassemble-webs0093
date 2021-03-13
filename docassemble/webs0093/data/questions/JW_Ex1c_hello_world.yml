@@ -1,0 +1,18 @@
+---
+# My third docassemble program
+mandatory: True
+question: Hello World!
+subquestion: |
+  Hello, **${ JWname }**, you are ${ JWage } years old!
+buttons:
+  - Exit: exit
+    url: https://flinders.edu.au
+  - Restart: restart
+---
+question: Your Details
+subquestion: |
+  Please enter your full name and age.
+fields:
+  - Full Name: JWname
+  - Age: JWage
+---

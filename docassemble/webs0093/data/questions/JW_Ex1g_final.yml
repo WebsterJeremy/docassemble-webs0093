@@ -1,0 +1,72 @@
+---
+mandatory: True
+question: Welcome!
+subquestion: |
+   Hello ${ JWname }
+   
+   % if JWadult == True:
+   % if JWpartner == True:
+   Your partner's name is ${ JWpartner_name }
+   
+   % endif
+   Your annual income is ${ currency(JWannualincome) }
+   % if JWpartner == True:
+   and ${ JWpartner_name } annual income is ${ currency(JWpartner_annualincome) }
+   % endif
+   
+   Your total household income is ${ currency(JWhouseholdincome) }
+   
+   Your average household income is ${ currency(JWaverageincome) }
+   % endif
+buttons:
+  - Exit: exit
+    url: https://flinders.edu.au
+  - Restart: restart
+--- 
+question: Your Details
+subquestion: |
+  Please enter your personal details
+fields:
+  - Name: JWname
+  - Age: JWage
+    datatype: integer
+---
+question: Your Income
+fields:
+  - What is your {annual income}?: JWannualincome
+    datatype: currency
+terms:
+  annual income: |
+    Your annual income should be your gross (ie: before tax) annual income
+---
+question: Your Household
+fields:
+  - Do you have a partner?: JWpartner
+    datatype: yesnoradio
+  - What is your partners name: JWpartner_name
+    show if:
+      variable: JWpartner
+      is: True
+  - What is your partners {annual income}: JWpartner_annualincome
+    datatype: currency
+    show if:
+      variable: JWpartner
+      is: True
+terms:
+  annual income: |
+    Your annual income should be your gross (ie: before tax) annual income
+---
+code: |
+  JWadult = True
+  
+  if JWage < 18:
+    JWadult = False
+---
+code: |
+  JWhouseholdincome = JWannualincome
+  JWaverageincome = JWhouseholdincome / 1
+  
+  if JWpartner:
+    JWhouseholdincome += JWpartner_annualincome
+    JWaverageincome = JWhouseholdincome / 2
+---

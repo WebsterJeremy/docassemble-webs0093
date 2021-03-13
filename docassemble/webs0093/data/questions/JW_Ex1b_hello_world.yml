@@ -1,0 +1,13 @@
+---
+# My second docassemble program
+mandatory: True
+question: Hello World!
+subquestion: |
+  Hello **${ JWname }**,
+  
+  Welcome to Docassemble!
+---
+question: Your Details
+fields:
+  - What is your name?: JWname
+---
