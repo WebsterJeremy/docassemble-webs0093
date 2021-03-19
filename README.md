@@ -4,7 +4,7 @@ Progress made in Docassemble for `Option B` in Interactive Computer Systems COMP
 
 Last update date of progress for assessments
 - C1: 14/03/2021
-- C2: No Progress
+- C2: 20/03/2021
 - C3: No Progress
 
 ## Author

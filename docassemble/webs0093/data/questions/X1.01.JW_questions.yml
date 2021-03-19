@@ -1,0 +1,46 @@
+---
+# Stores the description of the work that was requested
+# Updated to represent the contactee
+question: Describe the work the they wanted done
+fields:
+  - no label: JWwork_requested
+    datatype: area
+---
+# We ask the two payment questions in a single question block
+# Rephrase the old payment question to better suit the required awnser
+question: Payment
+fields:
+  - How much did you agree to get paided for this work?: JWpayment_agreed
+    datatype: currency
+    min: 0
+under: |
+  If you have not yet been paid anything, just leave the default value of $0.00
+---
+# Test for Offer and Acceptance
+# This code is going to ask two questions to make sure that
+question: Did the other person agree for you to do this work?
+fields:
+  - no label: JWcertainty
+    datatype: radio
+    choices:
+      - Yes. The other person agreed to exactly this work: MJFagree_exact
+      - Yes. The other person agreed to some of this work but there was other work that was not agreed to that wasn't done: MJFagree_inexact
+      - No. The other person did not agree to do this work or all of this work: MJFdisagree
+---
+# Test for Consideration (and Certainty)
+question: Payment for the Work
+subquestion: |
+  Did you and the other person agree how much you would pay for the work?
+fields:
+  - no label: JWconsideration
+    datatype: radio
+    choices:
+      - Yes, we agreed they would pay ${ currency(JWpayment_agreed) } for the work: True
+      - No, we never reached a firm agreement on how much they should pay: False
+---
+# Check if they were an adult at the given time, this checks capacity but not mental capacity similar to right side questions.
+question: Who did you contract with?
+subquestion: |
+  Were you an adult when you worked?
+yesno: JWcapacity
+---
