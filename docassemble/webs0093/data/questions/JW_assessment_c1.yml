@@ -70,7 +70,7 @@ fields:
       - Criminal
       - Employment
       - General
-  - Date: JWdate
+  - Filing Date: JWdate
     datatype: date
     default: |
       ${ today() }
@@ -82,30 +82,49 @@ fields:
   - Applicant: JWapplicant
   - Respondent: JWrespondent
 ---
-question: Signee Details
+question: Lawyer Details
 subquestion:
-  Enter details of signee
+  Enter details of the lawyer
 fields:
-  - Full Name: JWsignee
-  - Capacity: JWsignee_capacity
+  - Full name: JWlawyer_name
+  - Representing: JWlawyer_representing
+    choices:
+      - Applicant
+      - Respondent
+  - Law Firm: JWlawyer_firm
+  - Phone: JWlawyer_phone
+  - Fax: JWlawyer_fax
+  - Email: JWlawyer_email
+    datatype: email
+  - Address for service: JWservice_address
 ---
 code: |
   JWdate_formatted = format_date(JWdate, "d MMMM yyyy")
+---
+code: |
+  if JWlawyer_representing == 'Respondent':
+    JWlawyer_behalf = JWrespondent
+  else:
+    JWlawyer_behalf = JWapplicant
 ---
 event: endpoint['eligible']
 question: Form Completed
 subquestion: |
   Your form has successfully been constructed, this was your input.<br>
   
-  Information|Your Input
+  Information|Your Response
   -----------|----------
-  District Registry     | ${ JWdistrict_registry }
-  Division              | ${ JWdivision }
-  Date                  | ${ JWdate }
   Applicant             | ${ JWapplicant }
   Respondent            | ${ JWrespondent }
-  Signee Full Name      | ${ JWsignee }
-  Signee Capacity       | ${ JWsignee_capacity }
+  Court                 | The ${ JWdistrict_registry } registry of the ${ JWcourt }, ${ JWdivision }
+  Filing Date           | ${ format_date(JWdate, format='d MMMM yyyy') }
+  Lawyer                | ${ JWlawyer_name }
+  Law firm              | ${ JWlawyer_firm }
+  Lawyer representing   | ${ JWlawyer_representing }
+  Lawyer Phone          | ${ JWlawyer_phone }
+  Lawyer Fax            | ${ JWlawyer_fax }
+  Lawyer Email          | [${ JWlawyer_email }](mailto:${ JWlawyer_email })
+  Address for Service   | ${ JWservice_address }
   
   <br>
   <div class="card">
